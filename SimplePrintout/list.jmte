@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<html>
+		<head>
+			<style type="text/css">
+				table {
+				font-family: arial, sans-serif;
+				border-collapse: collapse;
+				
+				}
+				td, th {
+				border: 1px solid #DDD;
+				text-align: left;
+				padding: 5px 5px 0px 5px;
+				}
+				tr:nth-child(even) {
+				background-color: #CCC;
+				}
+			</style>
+		</head>
+		<body>
+			<table>
+				<THEAD>
+				<tr>
+					<th>Poster</th>
+					<th>Movie</th>
+					<th>Year</th>
+					<th>Runtime</th>
+					<th>Rating</th>
+					<th>Genre</th>
+				</tr>
+				</THEAD>
+				<TBODY>
+				${foreach movies movie}
+				<tr>
+					<td>
+						<img src="thumbs/${movie;copyArtwork(type=POSTER, thumb=true, width=50, destination=thumbs, fallback=../nopicture.gif)}" />
+					</td>
+					<td>${movie.title}</td>
+					<td>${movie.year}</td>
+					<td>${movie.runtimeFromMediaFilesInMinutes}min</td>
+					<td>${movie.rating.rating}</td>
+					<td>
+						${foreach movie.genres genre , }${genre}${end}
+					</td>
+				</tr>
+				${end}
+				</TBODY>
+			</table>
+		</body>
+	</html>
+	
